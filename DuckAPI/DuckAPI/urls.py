@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,re_path, include
 from django.conf import settings
 from rest_framework.authtoken import views
+from ducks.views import ( LoginView, LogoutView)
 
 urlpatterns = [
 	re_path(r'^api/v1/',include('ducks.urls')),
@@ -24,5 +25,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-	re_path(r'^api/v1/',include('rest_framework.urls',namespace='rest_framework')),
+    re_path(r'^api/v1/',include('rest_framework.urls',namespace='rest_framework')),
+    re_path(r'^api/v1/login',LoginView.as_view()),
+    re_path(r'^api/v1/logout',LogoutView.as_view()),
 ]
